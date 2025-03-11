@@ -73,4 +73,5 @@ def rename_images(folder):
         except Exception as e:
             print(f"Ошибка обработки {image_path}: {e}")
 
+
 rename_images(current_folder)
