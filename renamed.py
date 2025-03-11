@@ -18,7 +18,6 @@ translator = Translator()
 
 
 def get_image_paths(folder):
-    """Получает список путей ко всем изображениям в папке"""
     valid_extensions = (".jpg", ".jpeg", ".png", ".bmp", ".gif")
 
     return [
@@ -28,7 +27,6 @@ def get_image_paths(folder):
 
 
 def generate_caption(image_path):
-    """Генерирует описание для изображения"""
     image = Image.open(image_path).convert("RGB")
     inputs = processor(image, return_tensors="pt").to(device)
     out = model.generate(**inputs, max_length=50)
@@ -37,7 +35,6 @@ def generate_caption(image_path):
 
 
 def translate_text(text, dest_language="ru"):
-    """Переводит текст на указанный язык (по умолчанию - русский)"""
     try:
         return translator.translate(text, dest=dest_language).text
 
@@ -48,7 +45,6 @@ def translate_text(text, dest_language="ru"):
 
 
 def rename_images(folder):
-    """Генерирует описания, переводит их и переименовывает файлы"""
     image_paths = get_image_paths(folder)
 
     for i, image_path in enumerate(image_paths):
